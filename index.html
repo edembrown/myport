@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Patrick Edem Amenya — Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/6f3b2f9b1a.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* Luxury theme: deep navy + gold + white */
+    /* Font: Inter (loaded in HTML) */
+    
+    :root{
+      --bg:#071233;           /* deep navy */
+      --panel:#071232cc;      /* semi-dark panel */
+      --card:#071233;         /* card base (we'll use whites on top) */
+      --white:#ffffff;
+      --muted:#cbd5e1;
+      --gold:#d4af37;         /* luxury gold */
+      --accent:#3a6fb1;       /* secondary blue */
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --shadow: 0 12px 40px rgba(2,8,23,0.6);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color-scheme: dark;
+    }
+    
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg, #020417 0%, #071233 60%);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      font-size:15px;
+    }
+    
+    /* container */
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+    
+    /* HERO */
+    .hero{padding:28px 0}
+    .hero-inner{display:grid;grid-template-columns:160px 1fr 320px;gap:28px;align-items:start}
+    .avatar-wrap{width:160px;height:160px;border-radius:999px;overflow:hidden;border:4px solid rgba(255,255,255,0.06);box-shadow:0 14px 40px rgba(0,0,0,0.6);background:linear-gradient(135deg,#0b2a4a,#092a3f)}
+    .avatar-wrap img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform .6s ease,border .3s}
+    .avatar-wrap:hover img{transform:scale(1.08)}
+    .hero-center{padding-top:6px}
+    .hero-name{font-size:36px;margin:0 0 6px 0;letter-spacing:0.6px;color:var(--gold);font-weight:800}
+    .hero-role{margin:0;color:var(--muted);font-weight:700}
+    .carousel{margin:12px 0 10px 0;overflow:hidden;height:34px}
+    .carousel-track{display:flex;flex-direction:column;gap:8px;animation:carousel 12s linear infinite}
+    .carousel-track span{display:inline-block;font-weight:700;color:var(--white);opacity:0.95}
+    
+    /* hero desc and actions */
+    .hero-desc{color:var(--muted);max-width:720px;margin-top:10px}
+    .hero-actions{display:flex;gap:12px;margin-top:14px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:800;border:none;cursor:pointer}
+    .btn.gold{background:linear-gradient(90deg,var(--gold),#b8922a);color:#081022;box-shadow:0 8px 30px rgba(212,175,55,0.12)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
+    
+    /* socials */
+    .socials.small{margin-top:12px;display:flex;gap:10px}
+    .social{width:44px;height:44px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.03);color:var(--gold);text-decoration:none;font-size:18px}
+    
+    /* right card */
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:16px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.03)}
+    .card-title{color:var(--gold);margin:0;font-weight:800}
+    .quick-list{list-style:none;padding:12px 0 0 18px;margin:0;color:var(--muted)}
+    .quick-list li{margin-bottom:8px}
+    
+    /* sections */
+    .section{margin-top:22px;padding:18px;border-radius:12px}
+    .section-title{display:flex;align-items:center;gap:12px;margin:0 0 12px 0;color:var(--gold);font-weight:800}
+    .section .muted{color:var(--muted)}
+    
+    /* grids */
+    .grid{display:grid;gap:14px}
+    .skills-grid{grid-template-columns:repeat(2,1fr)}
+    .skill-card{padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);transition:transform .28s ease,box-shadow .28s ease}
+    .skill-card:hover{transform:translateY(-8px);box-shadow:0 28px 70px rgba(5,10,20,0.6)}
+    .skill-card .icon{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--gold));display:flex;align-items:center;justify-content:center;color:#071233;font-size:20px;margin-bottom:10px}
+    .skill-card h4{margin:0 0 6px 0;font-weight:800;color:var(--white)}
+    
+    /* timeline */
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .timeline-item{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);transition:transform .22s}
+    .timeline-item:hover{transform:translateY(-6px)}
+    .time{min-width:110px;color:var(--gold);font-weight:800}
+    .t-head{font-weight:800}
+    .t-role{color:var(--muted)}
+    
+    /* projects */
+    .projects-grid{grid-template-columns:repeat(2,1fr)}
+    .project{padding:16px;border-radius:12px;border:1px solid rgba(212,175,55,0.12);background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);transition:transform .22s,box-shadow .22s}
+    .project:hover{transform:translateY(-10px);box-shadow:0 32px 90px rgba(0,0,0,0.6)}
+    .pc-badge{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--gold),#b8922a);display:flex;align-items:center;justify-content:center;color:#071233;margin-right:12px}
+    
+    /* two-col */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .small-card{padding:12px}
+    
+    /* contact */
+    .contact-wrap{display:flex;gap:18px;align-items:stretch;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)}
+    .contact-left{flex:1}
+    .contact-right{width:320px;display:flex;flex-direction:column;gap:12px}
+    .contact-card.mini{display:flex;gap:12px;align-items:center;padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+    
+    /* footer - MODIFIED FOR CENTER ALIGNMENT */
+    .footer{
+      margin-top:22px;
+      padding:18px;
+      border-top:1px solid rgba(255,255,255,0.03);
+      display:flex;
+      /* Original: justify-content:space-between; */
+      /* Change to center the content: */
+      justify-content:center; 
+      color:var(--muted)
+    }
+    
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .small{font-size:13px}
+    .link{color:var(--gold);text-decoration:none;font-weight:700}
+    
+    /* animations & inview */
+    .card, .skill-card, .project, .timeline-item{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+    .inview{opacity:1;transform:translateY(0)}
+    
+    /* responsive */
+    @media (max-width:980px){
+      .hero-inner{grid-template-columns:120px 1fr;gap:16px}
+      .hero-right{display:none}
+      .skills-grid, .projects-grid{grid-template-columns:1fr}
+      .two-col{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="hero">
+      <div class="hero-inner container">
+        <div class="hero-left">
+          <div class="avatar-wrap">
+            <img id="avatar" src="assets/profile.jpg" alt="Patrick Edem Amenya">
+          </div>
+        </div>
+
+        <div class="hero-center">
+          <h1 class="hero-name">Patrick Edem Amenya</h1>
+          <p class="hero-role">Educator · Developer · Innovator</p>
+
+          <div class="carousel">
+            <div class="carousel-track" id="carouselTrack" aria-hidden="false">
+              <span>Teacher of Mathematics & Science</span>
+              <span>Educational Software Developer</span>
+              <span>JHS & SHS Elective Instructor (Chem & Physics)</span>
+              <span>Web Developer — React / Django</span>
+            </div>
+          </div>
+
+          <p class="hero-desc">I design student-centered lessons, build learning tools, and create web solutions to make abstract concepts tangible. Focused on innovation, classroom impact and digital literacy.</p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn gold">View Projects</a>
+            <a href="#contact" class="btn ghost">Contact</a>
+          </div>
+
+          <div class="socials small">
+            <a href="#" aria-label="GitHub" class="social"><i class="fa-brands fa-github"></i></a>
+            <a href="#" aria-label="LinkedIn" class="social"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" aria-label="Website" class="social"><i class="fa-solid fa-globe"></i></a>
+          </div>
+        </div>
+
+        <div class="hero-right card">
+          <h3 class="card-title">Quick Snapshot</h3>
+          <ul class="quick-list">
+            <li><strong>Subjects:</strong> Mathematics, Science, Computing</li>
+            <li><strong>Levels:</strong> Primary, JHS, SHS</li>
+            <li><strong>Skills:</strong> Python, JavaScript, React, Django</li>
+            <li><strong>Awards:</strong> Best Teacher (Jesus Life School Complex)</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="main container">
+
+      <section id="skills" class="section">
+        <h2 class="section-title"><i class="fa-solid fa-star"></i> Core Competencies</h2>
+        <div class="grid skills-grid">
+          <div class="card skill-card">
+            <div class="icon"><i class="fa-solid fa-book-open"></i></div>
+            <h4>Lesson Planning</h4>
+            <p>Curriculum design, differentiated instruction and assessment strategies.</p>
+          </div>
+
+          <div class="card skill-card">
+            <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+            <h4>Classroom Management</h4>
+            <p>Engagement techniques, behavior management and inclusive class culture.</p>
+          </div>
+
+          <div class="card skill-card">
+            <div class="icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <h4>EdTech & Development</h4>
+            <p>Educational apps, web tools and interactive demos to support lessons.</p>
+          </div>
+
+          <div class="card skill-card">
+            <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+            <h4>Assessment & Evaluation</h4>
+            <p>Formative/summative assessments, tracking progress and remediation plans.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="section">
+        <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experience</h2>
+        <div class="timeline">
+          <article class="timeline-item card">
+            <div class="time">2024 — Present</div>
+            <div class="body">
+              <h4>Sky Educational Institute</h4>
+              <p class="muted">History · RME · Computing</p>
+              <ul>
+                <li>Integrated computing projects and interactive lessons for JHS learners.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item card">
+            <div class="time">2023 — 2024</div>
+            <div class="body">
+              <h4>Golden Wheels Academy</h4>
+              <p class="muted">JHS Computing & Creative Arts · SHS Elective Chemistry & Physics</p>
+              <ul>
+                <li>Prepared SHS students for WASSCE electives and built practical experiments.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item card">
+            <div class="time">2021 — 2023</div>
+            <div class="body">
+              <h4>Jesus Life School Complex</h4>
+              <p class="muted">Mathematics · Science · Social Studies</p>
+              <ul><li>Awarded Best Teacher; created teaching apps to explain concepts.</li></ul>
+            </div>
+          </article>
+
+          <article class="timeline-item card">
+            <div class="time">2020</div>
+            <div class="body"><h4>Benakwa School Complex</h4><p class="muted">Primary 4 — Class Teacher</p></div>
+          </article>
+
+          <article class="timeline-item card">
+            <div class="time">2018 — 2019</div>
+            <div class="body"><h4>Ziope D/A JHS</h4><p class="muted">Mathematics — BECE prep</p></div>
+          </article>
+
+          <article class="timeline-item card">
+            <div class="time">2017 — 2018</div>
+            <div class="body"><h4>Agapet Filling Station</h4><p class="muted">Filling Pump Attendant</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> Selected Projects</h2>
+        <div class="grid projects-grid">
+          <article class="project card">
+            <div class="pc-top">
+              <div class="pc-badge"><i class="fa-solid fa-globe"></i></div>
+              <div>
+                <h4>Family and Friends Foundation Website</h4>
+                <p class="muted small">Community website for outreach and information.</p>
+              </div>
+            </div>
+            <p>Designed and developed the site — responsive pages and accessible layout.</p>
+            <div class="pc-actions"><a class="link" href="#">Live</a><a class="link" href="#">Source</a></div>
+          </article>
+
+          <article class="project card">
+            <div class="pc-top">
+              <div class="pc-badge"><i class="fa-solid fa-graduation-cap"></i></div>
+              <div>
+                <h4>Math Visualizer (Teaching App)</h4>
+                <p class="muted small">Interactive tool to visualize algebraic concepts.</p>
+              </div>
+            </div>
+            <p>Small learning app used in class to help students see relationships visually.</p>
+            <div class="pc-actions"><a class="link" href="#">Demo</a><a class="link" href="#">Source</a></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education & Certifications</h2>
+        <div class="two-col">
+          <div class="card small-card">
+            <h4>Education</h4>
+            <ul>
+              <li><strong>University of Cape Coast</strong> — BEd Mathematics & Computing (Ongoing)</li>
+              <li><strong>Agotime Senior High School</strong> — WASSCE</li>
+              <li><strong>Ziope D/A JHS</strong> — BECE (2014)</li>
+            </ul>
+          </div>
+
+          <div class="card small-card">
+            <h4>Certifications & Achievements</h4>
+            <ul>
+              <li>Google Digital Skills for Africa — Digital Marketing (2020)</li>
+              <li>Best Teacher — Jesus Life School Complex (2022)</li>
+              <li>National Science & Maths Quiz — Regional level</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <h2 class="section-title"><i class="fa-solid fa-envelope-open-text"></i> Contact</h2>
+        <div class="contact-wrap card">
+          <div class="contact-left">
+            <h3>Let's connect</h3>
+            <p class="muted">Interested in collaboration, teaching opportunities or demoing my teaching apps? Reach out.</p>
+            <p><i class="fa-solid fa-envelope"></i> <a href="mailto:patrickamenya36@gmail.com">patrickamenya36@gmail.com</a></p>
+            <p><i class="fa-solid fa-phone"></i> <a href="tel:+233552108860">0552108860</a></p>
+            <p><i class="fa-solid fa-location-dot"></i> Gbetsile, Washington</p>
+          </div>
+
+          <div class="contact-right">
+            <div class="contact-card mini"><i class="fa-solid fa-user-pen"></i><div><strong>Open to</strong><p class="muted">Teaching roles, EdTech projects, mentoring</p></div></div>
+            <div class="contact-card mini"><i class="fa-solid fa-laptop-code"></i><div><strong>Available for</strong><p class="muted">Web dev and tutoring projects</p></div></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> Patrick Edem Amenya</div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
