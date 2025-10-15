@@ -1,14 +1,14 @@
 /* Luxury theme: deep navy + gold + white */
 /* Font: Inter (loaded in HTML) */
-
+    
 :root{
-  --bg:#071233;           /* deep navy */
-  --panel:#071232cc;      /* semi-dark panel */
-  --card:#071233;         /* card base (we'll use whites on top) */
+  --bg:#071233;           /* deep navy */
+  --panel:#071232cc;      /* semi-dark panel */
+  --card:#071233;         /* card base (we'll use whites on top) */
   --white:#ffffff;
   --muted:#cbd5e1;
-  --gold:#d4af37;         /* luxury gold */
-  --accent:#3a6fb1;       /* secondary blue */
+  --gold:#d4af37;         /* luxury gold */
+  --accent:#3a6fb1;       /* secondary blue */
   --glass: rgba(255,255,255,0.04);
   --radius:14px;
   --shadow: 0 12px 40px rgba(2,8,23,0.6);
@@ -38,7 +38,7 @@ body{
 .avatar-wrap img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform .6s ease,border .3s}
 .avatar-wrap:hover img{transform:scale(1.08)}
 .hero-center{padding-top:6px}
-.hero-name{font-size:36px;margin:0 0 6px 0;letter-spacing:0.6px;color:var(--gold);font-weight:800} /* text-shadow REMOVED */
+.hero-name{font-size:36px;margin:0 0 6px 0;letter-spacing:0.6px;color:var(--gold);font-weight:800} /* text-shadow was removed here */
 .hero-role{margin:0;color:var(--muted);font-weight:700}
 .carousel{margin:12px 0 10px 0;overflow:hidden;height:34px}
 .carousel-track{display:flex;flex-direction:column;gap:8px;animation:carousel 12s linear infinite}
@@ -98,8 +98,15 @@ body{
 .contact-right{width:320px;display:flex;flex-direction:column;gap:12px}
 .contact-card.mini{display:flex;gap:12px;align-items:center;padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
 
-/* footer */
-.footer{margin-top:22px;padding:18px;border-top:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;color:var(--muted)}
+/* footer - CENTERED */
+.footer{
+  margin-top:22px;
+  padding:18px;
+  border-top:1px solid rgba(255,255,255,0.03);
+  display:flex;
+  justify-content:center; 
+  color:var(--muted)
+}
 
 /* small helpers */
 .muted{color:var(--muted)}
@@ -110,11 +117,130 @@ body{
 .card, .skill-card, .project, .timeline-item{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .inview{opacity:1;transform:translateY(0)}
 
-/* responsive */
+/* =================================================== */
+/* RESPONSIVE CSS START - TABLET/SMALL LAPTOP (<= 980px) */
+/* =================================================== */
 @media (max-width:980px){
+  /* Adjust main container padding */
+  .container{padding:20px}
+
+  /* HERO Section Adjustments */
   .hero-inner{grid-template-columns:120px 1fr;gap:16px}
-  .hero-right{display:none}
-  .skills-grid, .projects-grid{grid-template-columns:1fr}
-  .two-col{grid-template-columns:1fr}
-  .projects-grid{grid-template-columns:1fr}
+  .avatar-wrap{width:120px;height:120px;}
+  .hero-right{display:none} /* Hide the 'Quick Snapshot' card on tablets/phones */
+  .hero-name{font-size:32px;}
+  
+  /* Multi-Column Sections Collapse */
+  .skills-grid, 
+  .projects-grid,
+  .two-col{
+    grid-template-columns:1fr;
+  }
+  
+  /* Contact Card Adjustments */
+  .contact-wrap{
+    flex-direction:column;
+  }
+  .contact-right{
+    width:100%;
+    margin-top:10px;
+  }
+}
+
+/* =========================================== */
+/* RESPONSIVE CSS START - MOBILE PHONES (<= 600px) */
+/* =========================================== */
+@media (max-width:600px){
+  body{
+    font-size:14px;
+  }
+  .container{padding:14px}
+  
+  /* HERO Section Mobile Stack */
+  .hero-inner{
+    grid-template-columns:1fr; /* Stack everything in one column */
+    gap:18px;
+    text-align:center;
+  }
+  .hero-left{
+    display:flex;
+    justify-content:center; /* Center the avatar */
+  }
+  .avatar-wrap{
+    width:100px;
+    height:100px;
+  }
+  
+  /* Center elements previously aligned left in hero-center */
+  .hero-center{
+    padding-top:0;
+  }
+  .hero-name{
+    font-size:28px;
+    margin-top: -10px; /* Pull name up closer to avatar */
+  }
+  .hero-role{
+    font-size:16px;
+  }
+  .hero-desc{
+    text-align:left; /* Keep paragraph text left-aligned for readability */
+  }
+  
+  /* Carousel */
+  .carousel{
+    height:28px;
+    margin:8px 0;
+  }
+
+  /* Actions and Socials Centering */
+  .hero-actions{
+    justify-content:center;
+  }
+  .socials.small{
+    justify-content:center;
+  }
+  
+  /* Timeline Adjustment */
+  .timeline-item{
+    flex-direction:column;
+    gap:6px;
+    padding:12px;
+  }
+  .time{
+    min-width:auto;
+    order: -1; /* Move the time to the top */
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+  .t-head, .t-role{
+    font-size:14px;
+  }
+  
+  /* Projects badge and text stacking */
+  .project .pc-top{
+    display:block; /* Allow badge and text block to stack */
+  }
+  .pc-badge{
+    margin:0 auto 8px auto; /* Center badge */
+  }
+
+  /* Sections & Cards */
+  .section{
+    padding:14px;
+  }
+  .card{
+    padding:14px;
+  }
+  .skill-card{
+    text-align:center;
+  }
+  .skill-card .icon{
+    margin:0 auto 10px auto; /* Center skill icon */
+  }
+
+  /* Reduce button size */
+  .btn{
+    padding:8px 12px;
+    font-size:14px;
+  }
 }
